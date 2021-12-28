@@ -11,16 +11,16 @@ setuptools.setup(
     description="A simple signals package to create and distort harmonic signals",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/pypa/sampleproject",
+    url="https://github.com/camilorey/signals_package",
     project_urls={
-        "Bug Tracker": "https://github.com/pypa/sampleproject/issues",
+        "Bug Tracker": "https://github.com/camilorey/signals_package/issues",
     },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "src"},
-    packages=setuptools.find_packages(where="src"),
+    package_dir={"": "signals"},
+    packages=setuptools.find_packages(where="signals"),
     python_requires=">=3.6",
 )
