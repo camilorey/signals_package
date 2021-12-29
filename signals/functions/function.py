@@ -18,7 +18,7 @@ class Function:
         for attr_name in kwargs:
             self.set_parameter(kwargs,attr_name,attr_name,0)
 
-    def set_parameter(self,param_dict,nom_attr,nom_param,default_value):
+    def set_parameter(self,param_dict,nom_attr,nom_param,default_value,check_sign=False):
         """
         This method asserts and assigns the attributes of a baseline signal
         :param param_dict:
@@ -38,7 +38,16 @@ class Function:
                 raise TypeError(error)
                 self.__setattr__(nom_attr,default_value)
             else:
-                self.__setattr__(nom_attr,value)
+                if check_sign:
+                    if value < 0:
+                        error = 'Value Error: parameter{} should be non non negative. Using {} instead.'.format(nom_param,default_value)
+                        raise ValueError(error)
+                        self.__set_attr__(nom_attr,default_value)
+                    else:
+                        self.__setattr__(nom_attr,value)
+                else:
+                    self.__setattr__(nom_attr,value)
+
 
     def check_numeric(self,kwargs)->list:
         """

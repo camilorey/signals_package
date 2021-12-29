@@ -1,3 +1,4 @@
+import warnings
 import numpy as np
 from .perturbation import Perturbation
 
@@ -19,6 +20,11 @@ class StepPerturbation(Perturbation):
         to create a step.
         :return: None. Step Perturbation attributes are set internally.
         """
+        if 'step' in kwargs:
+            w = kwargs['step']
+            is_in_support = self.check_parameter_in_support(w)
+            if not is_in_support:
+                warnings.warn('Warning: Step position is outside of support.')
         self.set_parameter(kwargs,'_step','step',1)
         self.set_parameter(kwargs,'_direction','dir',1)
 

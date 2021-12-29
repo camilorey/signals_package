@@ -26,11 +26,22 @@ class Perturbation(Function):
         for (self._translation).
         :return: None. BaseLine attributes are set internally.
         """
-        self.set_parameter(kwargs, '_t0', 't0', 0.5)
-        self.set_parameter(kwargs, '_support', 'support', 0.25)
-        self.set_parameter(kwargs, '_strength', 'strength', 1)
+        self.set_parameter(kwargs, '_t0', 't0', 0.5,check_sign=True)
+        self.set_parameter(kwargs, '_support', 'support', 0.25,check_sign=True)
+        self.set_parameter(kwargs, '_strength', 'strength', 1,check_sign=True)
 
+    def check_parameter_in_support(self,param:float)->bool:
+        """
+        This method is to check that a perturbation parameter is within the support of the function.
+        This will be useful in the case of spike and step functions where the changes in the function
+        must occur within the support of the function.
+        :param param: the param we wish to check within the support
+        :return: True if the parameter is within the support, False otherwise.
+        """
+        if type(param) not in [int,float]:
+            raise TypeError("Type Error: parameter {} is not numeric".format(param))
 
+        return self._t0 <= param and param <= self._t0 + self._support
 
     def perturbation_function(self,t:float)->float:
         """

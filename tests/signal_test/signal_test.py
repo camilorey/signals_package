@@ -1,4 +1,5 @@
 import unittest
+
 from signals.signal import Signal
 from signals.perturbations.perturbation import Perturbation
 from signals.perturbations.step_perturbation import StepPerturbation

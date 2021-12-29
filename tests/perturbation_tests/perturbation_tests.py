@@ -39,9 +39,9 @@ class PerturbationTest(unittest.TestCase):
                 self.assertEqual(P_t,0)
             else:
                 if abs(t-p) < w/2:
-                    self.assertTrue(s*(1-0.3) <= P_t <= s*(1+0.3))
+                    self.assertTrue(s*(1-0.4) <= P_t <= s*(1+0.4))
                 else:
-                    self.assertTrue(0.1*s*(1-0.3) <= P_t <= 0.1*s*(1+0.3))
+                    self.assertTrue(0.1*s*(1-0.4) <= P_t <= 0.1*s*(1+0.4))
 
     def test_stepConstruction(self):
         s = 2

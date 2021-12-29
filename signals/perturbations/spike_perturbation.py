@@ -1,3 +1,4 @@
+import warnings
 import numpy as np
 from .perturbation import Perturbation
 
@@ -18,6 +19,11 @@ class SpikePerturbation(Perturbation):
         and support for (_spike_support).
         :return: None. Spike Perturbation attributes are set internally.
         """
+        if 'position' in kwargs:
+            p = kwargs['position']
+            is_in_support = self.check_parameter_in_support(p)
+            if is_in_support == False:
+                warnings.warn('Warning: Spike width is outside of the support.')
         self.set_parameter(kwargs,'_width','width',0.3)
         self.set_parameter(kwargs,'_position','position',0.8)
 

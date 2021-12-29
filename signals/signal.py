@@ -17,7 +17,11 @@ class Signal:
     sample the signal (i.e. over an interval [t0,t1]) or using the current time as a
     sampling strategy (i.e. from the time the method is called, 200 points with a wait time)
     """
-    MAX_SAMPLING = 100
+
+    _DEFAULT_SAMPLE_SIZE = 100
+    """
+    This MAX_SAMPLING value is the number of default sample size the program will use. 
+    """
     def __init__(self,**kwargs):
         """
         Constructor for the signal. Here we only specify the baseline and the noise factors
@@ -29,6 +33,14 @@ class Signal:
         self._baseline = BaseLine(**kwargs)
         self._noise = Noise(**kwargs)
         self._perturbations = None
+        if 'sample_size' in kwargs:
+            val = kwargs['sample_size']
+            if type(val) not in [int,float]:
+                raise TypeError("Type Error: Sample size is not of numeric.")
+            else:
+                self._sample_size = round(val)
+        else:
+            self._sample_size = self._DEFAULT_SAMPLE_SIZE
 
     def add_perturbation(self,pert):
         """
@@ -76,15 +88,14 @@ class Signal:
         :return: a pair (indicator,DF): composed of an indicator (PERT if there are perturbations involved,
         NORMAL if not) and DF a Pandas DataFrame containing the 200 points of the signal sample.
         """
-
         if t1 == t0:
             raise ValueError("Error: sample size is 0, t0 = t1")
         if t1 < t0:
             raise ValueError("Sampling error: t1 should be larger than t0")
-        step = (t1-t0)/float(self.MAX_SAMPLING)
+        step = (t1-t0)/float(self._sample_size)
         t = t0
         signal_sample = pd.DataFrame(columns=['t','signal'])
-        for i in range(self.MAX_SAMPLING):
+        for i in range(self._sample_size):
             try:
                 S_t = self.calculate(t)
                 signal_sample = signal_sample.append({'t':t,'signal':S_t},
@@ -117,7 +128,7 @@ class Signal:
             signal_sample = pd.DataFrame(columns=['t', 'signal'])
             start_time = datetime.now()
             i = 0
-            while i < self.MAX_SAMPLING:
+            while i < self._sample_size:
                 time.wait(wait_time)
                 now_time = datetime.now()
                 t = (now_time-start_time).timedelta()
