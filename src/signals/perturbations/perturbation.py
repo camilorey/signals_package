@@ -1,5 +1,5 @@
 import numpy as np
-from signals.functions.function import Function
+from src.signals.functions.function import Function
 
 class Perturbation(Function):
     """

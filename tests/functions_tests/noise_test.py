@@ -1,5 +1,5 @@
 import unittest
-from signals.functions.noise import Noise
+from src.signals import Noise
 
 class NoiseTest(unittest.TestCase):
     def test_str_rep(self):

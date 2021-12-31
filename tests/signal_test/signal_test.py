@@ -1,9 +1,9 @@
 import unittest
 
-from signals.signal import Signal
-from signals.perturbations.perturbation import Perturbation
-from signals.perturbations.step_perturbation import StepPerturbation
-from signals.perturbations.spike_perturbation import SpikePerturbation
+from src.signals import Signal
+from src.signals import Perturbation
+from src.signals import StepPerturbation
+from src.signals import SpikePerturbation
 
 amps = [0,1,2,3,4]
 pers = [0,1,2,3,4]

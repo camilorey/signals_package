@@ -1,8 +1,8 @@
 import numpy as np
 import unittest
-from signals.perturbations.perturbation import Perturbation
-from signals.perturbations.spike_perturbation import SpikePerturbation
-from signals.perturbations.step_perturbation import StepPerturbation
+from src.signals import Perturbation
+from src.signals import SpikePerturbation
+from src.signals import StepPerturbation
 
 class PerturbationTest(unittest.TestCase):
 

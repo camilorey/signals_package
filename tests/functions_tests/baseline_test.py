@@ -1,6 +1,6 @@
 import unittest
 import math
-from signals.functions.baseline import BaseLine
+from src.signals import BaseLine
 
 class BaselineTest(unittest.TestCase):
 

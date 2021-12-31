@@ -1,5 +1,5 @@
 import unittest
-from signals.functions.function import Function
+from src.signals import Function
 
 class TestFunction(unittest.TestCase):
 
