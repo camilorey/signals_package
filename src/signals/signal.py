@@ -1,10 +1,10 @@
 import time
 import datetime
 import pandas as pd
-from src.signals.functions.function import Function
-from src.signals.functions.baseline import BaseLine
-from src.signals.functions.noise import Noise
-from src.signals.perturbations.perturbation import Perturbation
+from functions.function import Function
+from functions.baseline import BaseLine
+from functions.noise import Noise
+from perturbations.perturbation import Perturbation
 
 
 class Signal:
